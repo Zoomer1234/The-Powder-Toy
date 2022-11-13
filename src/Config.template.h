@@ -23,6 +23,7 @@
 #mesondefine X86_SSE
 #mesondefine X86_SSE2
 #mesondefine X86_SSE3
+#mesondefine X86_SSE4A
 #mesondefine _64BIT
 #mesondefine SERVER
 #mesondefine STATICSERVER
@@ -72,7 +73,9 @@
 #define IDENT_RELTYPE "R"
 #endif
 
-#if defined(X86_SSE3)
+#if defined(X86_SSE4A)
+#define IDENT_BUILD "SSE4A"
+#elif defined(X86_SSE3)
 #define IDENT_BUILD "SSE3"
 #elif defined(X86_SSE2)
 #define IDENT_BUILD "SSE2"
