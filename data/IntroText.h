@@ -52,6 +52,12 @@ const char *const introTextData =
 #ifdef X86_SSE4A
 	" X86_SSE4A"
 #endif
+#ifdef X86_AVX
+	" X86_AVX"
+#endif
+#ifdef X86_AVX2
+	" X86_AVX2"
+#endif
 #ifdef LUACONSOLE
 	" LUACONSOLE"
 #endif
