@@ -124,6 +124,10 @@ if x86_sse_level_str == 'auto'
 	if not is_x86 or not is_64bit or host_platform == 'darwin' or (is_64bit and is_msvc)
 		x86_sse_level = 0
 	endif
+elif x86_sse_level_str == 'avx2'
+	x86_sse_level = 60
+elif x86_sse_level_str == 'avx'
+	x86_sse_level = 50
 elif x86_sse_level_str == 'sse4a'
 	x86_sse_level = 40
 elif x86_sse_level_str == 'sse3'
@@ -226,7 +230,11 @@ else
 		message('SSE level explicitly configured but unavailable on macosx')
 		x86_sse_level = 0
 	endif
-	if x86_sse_level >= 40
+	if x86_sse_level >= 60
+		args_ccomp += [ '-mavx2' ]
+	elif x86_sse_level >= 50
+		args_ccomp += [ '-mavx' ]
+	elif x86_sse_level >= 40
 		args_ccomp += [ '-msse4a' ]
 	elif x86_sse_level >= 30
 		args_ccomp += [ '-msse3' ]
@@ -317,6 +325,8 @@ conf_data.set('AND', host_platform == 'android')
 conf_data.set('WIN', host_platform == 'windows')
 conf_data.set('MACOSX', host_platform == 'darwin')
 conf_data.set('X86', is_x86)
+conf_data.set('X86_AVX2', x86_sse_level >= 60)
+conf_data.set('X86_AVX', x86_sse_level >= 50)
 conf_data.set('X86_SSE4A', x86_sse_level >= 40)
 conf_data.set('X86_SSE3', x86_sse_level >= 30)
 conf_data.set('X86_SSE2', x86_sse_level >= 20)
