@@ -26,7 +26,7 @@ option(
 option(
 	'http',
 	type: 'boolean',
-	value: false,
+	value: true,
 	description: 'Enable HTTP via libcurl'
 )
 option(
