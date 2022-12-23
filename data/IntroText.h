@@ -2,7 +2,7 @@
 #include "Config.h"
 
 const char *const introTextData =
-	"\bl" APPNAME " - Version " MTOS(SAVE_VERSION) "." MTOS(MINOR_VERSION) " - https://powdertoy.co.uk, irc.libera.chat #powder\n"
+	"\bl" APPNAME " - Version " MTOS(SAVE_VERSION) "." MTOS(MINOR_VERSION) " - https://powdertoy.co.uk, irc.libera.chat #powder, https://tpt.io/discord\n"
 	"\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\xEE\x81\xA9\n"
 	"\n"
 	"\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
@@ -37,17 +37,8 @@ const char *const introTextData =
 #elif MOD_ID > 0
 	" MODVER " MTOS(SNAPSHOT_ID)
 #endif
-#ifdef X86
-	" X86"
-#endif
-#ifdef X86_SSE
-	" X86_SSE"
-#endif
-#ifdef X86_SSE2
-	" X86_SSE2"
-#endif
-#ifdef X86_SSE3
-	" X86_SSE3"
+#if defined(X86_SSE) || defined(X86_SSE2) || defined(X86_SSE3)
+	" " IDENT_BUILD
 #endif
 #ifdef X86_SSE4A
 	" X86_SSE4A"
@@ -66,5 +57,14 @@ const char *const introTextData =
 #endif
 #ifdef REALISTIC
 	" REALISTIC"
+#endif
+#ifdef NOHTTP
+	" NOHTTP"
+#endif
+#ifdef DEBUG
+	" DEBUG"
+#endif
+#ifdef ENFORCE_HTTPS
+	" HTTPS"
 #endif
 	;
